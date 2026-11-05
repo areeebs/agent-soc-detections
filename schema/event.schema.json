@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://areeebs.github.io/agent-soc-detections/event.schema.json",
+  "title": "Agent SOC tool-call event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "timestamp", "trace_id", "agent_id", "tool_name", "tool_category", "allowed_tools", "source_labels", "approval_id"],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "trace_id": {"type": "string", "minLength": 1},
+    "agent_id": {"type": "string", "minLength": 1},
+    "tool_name": {"type": "string", "minLength": 1},
+    "tool_category": {"enum": ["read", "write", "shell", "network_egress", "other"]},
+    "allowed_tools": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "source_labels": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "approval_id": {"type": ["string", "null"]}
+  }
+}
